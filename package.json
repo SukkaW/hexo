@@ -39,7 +39,7 @@
     "archy": "^1.0.0",
     "bluebird": "^3.5.2",
     "chalk": "^2.4.1",
-    "cheerio": "0.22.0",
+    "cheerio": "github:curbengh/cheerio#decode-test",
     "hexo-cli": "^2.0.0",
     "hexo-front-matter": "^0.2.3",
     "hexo-fs": "^1.0.0",

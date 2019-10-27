@@ -43,12 +43,53 @@ echo "- Import 300 posts"
 git clone https://github.com/SukkaLab/hexo-many-posts.git source/_posts/hexo-many-posts --depth=1 --quiet
 rm -rf source/_posts/hexo-many-posts/.git/
 
-echo "- Replace node_modules/hexo"
+echo "- Start test run"
+
+npm i hexo@3.2.0
+echo "--------------------------------------------"
+echo "|                 Hexo 3.2                 |"
+echo "------------- Cold processing --------------"
+{ /usr/bin/time -v npx --no-install hexo g --debug > build.log 2>&1 ; } 2> build.log
+LOG_TABLE
+
+echo "-------------- Hot processing --------------"
+{ /usr/bin/time -v npx --no-install hexo g --debug > build.log 2>&1 ; } 2> build.log
+LOG_TABLE
+
+echo "--------- Another Cold processing ----------"
+npx --no-install hexo clean > build.log
+{ /usr/bin/time -v npx --no-install hexo g --debug > build.log 2>&1 ; } 2> build.log
+LOG_TABLE
+
+echo "--------------------------------------------"
+rm -rf build.log
+
+npm i hexo@4.0.0
+echo "--------------------------------------------"
+echo "|               Hexo 4.0.0                 |"
+echo "------------- Cold processing --------------"
+{ /usr/bin/time -v npx --no-install hexo g --debug > build.log 2>&1 ; } 2> build.log
+LOG_TABLE
+
+echo "-------------- Hot processing --------------"
+{ /usr/bin/time -v npx --no-install hexo g --debug > build.log 2>&1 ; } 2> build.log
+LOG_TABLE
+
+echo "--------- Another Cold processing ----------"
+npx --no-install hexo clean > build.log
+{ /usr/bin/time -v npx --no-install hexo g --debug > build.log 2>&1 ; } 2> build.log
+LOG_TABLE
+
+echo "--------------------------------------------"
+rm -rf build.log
+
+
 rm -rf node_modules/hexo
 ln -sf $TRAVIS_BUILD_DIR node_modules/hexo
 
-echo "- Start test run"
 
+echo "--------------------------------------------"
+echo "|           Hexo current branch            |"
 echo "------------- Cold processing --------------"
 { /usr/bin/time -v npx --no-install hexo g --debug > build.log 2>&1 ; } 2> build.log
 LOG_TABLE

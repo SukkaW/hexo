@@ -15,10 +15,8 @@ node_js:
   - "13"
 
 script:
-  - npm run eslint
-  - npm run test-cov
+  - sudo add-apt-repository -y ppa:rmescandon/yq
+  - sudo apt-get -q update
+  - sudo apt-get install yq -y
   - ./test/benchmark.sh
 
-after_script:
-  - npm install coveralls
-  - nyc report --reporter=text-lcov | coveralls

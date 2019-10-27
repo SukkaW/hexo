@@ -43,9 +43,13 @@ echo "- Import 300 posts"
 git clone https://github.com/SukkaLab/hexo-many-posts.git source/_posts/hexo-many-posts --depth=1 --quiet
 rm -rf source/_posts/hexo-many-posts/.git/
 
+echo "- Update config"
+yq w -i _config.yml highlight.auto_detect false
+
 echo "- Start test run"
 
 npm i hexo@3.2.0
+
 echo "--------------------------------------------"
 echo "|                 Hexo 3.2                 |"
 echo "------------- Cold processing --------------"
@@ -63,6 +67,7 @@ LOG_TABLE
 
 echo "--------------------------------------------"
 rm -rf build.log
+npx --no-install hexo clean > build.log
 
 npm i hexo@4.0.0
 echo "--------------------------------------------"
@@ -82,6 +87,7 @@ LOG_TABLE
 
 echo "--------------------------------------------"
 rm -rf build.log
+npx --no-install hexo clean > build.log
 
 
 rm -rf node_modules/hexo
@@ -105,5 +111,6 @@ LOG_TABLE
 
 echo "--------------------------------------------"
 rm -rf build.log
+npx --no-install hexo clean > build.log
 
 cd $TRAVIS_BUILD_DIR

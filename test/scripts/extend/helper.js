@@ -8,6 +8,8 @@ describe('Helper', () => {
 
     // name, fn
     h.register('test', () => {});
+    // name, fn, requireBind
+    h.register('test2', () => {}, true);
 
     h.get('test').should.exist;
 
@@ -36,6 +38,18 @@ describe('Helper', () => {
     h.register('test', () => {});
 
     h.list().should.have.keys(['test']);
+  });
+
+  it('_list()', () => {
+    const h = new Helper();
+
+    h.register('test1', () => {});
+    h.register('test2', () => {}, false);
+    h._list().should.have.keys(['test1', 'test2']);
+    h._list().test1.fn.should.exist;
+    h._list().test1.requireBind.should.eql(true);
+    h._list().test2.fn.should.exist;
+    h._list().test2.requireBind.should.eql(false);
   });
 
   it('get()', () => {

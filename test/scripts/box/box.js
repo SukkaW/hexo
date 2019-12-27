@@ -91,9 +91,10 @@ describe('Box', () => {
       fs.writeFile(pathFn.join(box.base, 'b', 'c.js'), 'c')
     ]).then(() => box.process()).then(() => {
       const keys = Object.keys(data);
+      const keysLen = keys.length;
       let key, item;
 
-      for (let i = 0, len = keys.length; i < len; i++) {
+      for (let i = 0; i < keysLen; i++) {
         key = keys[i];
         item = data[key];
 

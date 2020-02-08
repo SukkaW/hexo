@@ -32,7 +32,7 @@ after_script:
 
 deploy:
   provider: surge
-  project: 0x/
+  project: ./0x/
   skip_cleanup: true
   domain: "${TRAVIS_COMMIT}-${TRAVIS_NODE_VERSION}-hexo.surge.sh"
   on:

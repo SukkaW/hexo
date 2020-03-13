@@ -27,7 +27,7 @@ script:
     fi
 
 after_script:
-  - npm install coveralls
+  - npm install coveralls -g
   - nyc report --reporter=text-lcov | coveralls
 
 deploy:

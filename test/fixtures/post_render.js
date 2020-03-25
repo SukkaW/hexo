@@ -24,6 +24,20 @@ const content = [
   '{% endquote %}'
 ].join('\n');
 
+exports.content_for_issue_3346 = [
+  '# Title',
+  '```',
+  '{% test1 %}',
+  '{{ test2 }}',
+  '```',
+  'some content',
+  '',
+  '## Another title',
+  '{% blockquote %}',
+  'quote content',
+  '{% endblockquote %}'
+].join('\n');
+
 exports.content = content;
 
 exports.expected = [
@@ -49,4 +63,14 @@ exports.expected_disable_nunjucks = [
   '<p>{% quote Hello World %}<br>',
   'quote content<br>',
   '{% endquote %}</p>'
+].join('');
+
+exports.expected_for_issue_3346 = [
+  '<h1 id="Title"><a href="#Title" class="headerlink" title="Title"></a>Title</h1>',
+  highlight('{% test1 %}\n{{ test2 }}').replace(/{/g, '&#123;').replace(/}/g, '&#125;'), // Escaped by backtick_code_block
+  '\n<p>some content</p>\n',
+  '<h2 id="Another-title"><a href="#Another-title" class="headerlink" title="Another title"></a>Another title</h2>',
+  '<blockquote>',
+  '<p>quote content</p>\n',
+  '</blockquote>'
 ].join('');

@@ -56,6 +56,7 @@ git clone https://github.com/hexojs/hexo-theme-landscape --depth=1 --quiet theme
 
 echo "- npm install"
 npm install --silent
+npm install hexo-renderer-swig --silent
 
 echo "- Import 300 posts"
 git clone https://github.com/SukkaLab/hexo-many-posts.git source/_posts/hexo-many-posts --depth=1 --quiet

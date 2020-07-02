@@ -1,13 +1,13 @@
-name: Tester
+name: Coverage Report
 
 on: [push, pull_request]
 
 jobs:
-  tester:
+  coverall:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest, macos-latest]
+        os: [ubuntu-latest]
         node-version: ['10.x', '12.x', '14.x']
       fail-fast: false
     steps:
@@ -25,6 +25,21 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Test
-        run: npm run test
+        run: npm run test-cov
         env:
           CI: true
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.github_token }}
+          flag-name: run-${{ runner.os }}-${{ matrix.node-version }}
+          parallel: true
+  coverall-finish:
+    needs: tester
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls Finished
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.github_token }}
+        parallel-finished: true

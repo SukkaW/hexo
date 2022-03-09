@@ -41,7 +41,7 @@
     "abbrev": "^1.1.1",
     "archy": "^1.0.0",
     "bluebird": "^3.5.2",
-    "chalk": "^4.0.0",
+    "chalk": "^5.0.1",
     "hexo-cli": "^4.0.0",
     "hexo-front-matter": "^2.0.0",
     "hexo-fs": "^3.1.0",

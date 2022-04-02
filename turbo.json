@@ -7,6 +7,12 @@
     },
     "test": {
       "outputs": []
+    },
+    "test-cov": {
+      "outputs": [
+        "coverage/**",
+        ".nyc_output/**"
+      ]
     }
   }
 }

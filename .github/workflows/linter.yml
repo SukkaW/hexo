@@ -1,4 +1,4 @@
-name: Linter
+name: Lint
 
 on: [push, pull_request]
 
@@ -7,14 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2.0.1
       - name: Use Node.js 14.x
         uses: actions/setup-node@v3
         with:
           node-version: '14.x'
       - name: Install Dependencies
-        run: npm install
+        run: pnpm install
       - name: Lint
         run: |
-          npm run eslint
+          pnpm run eslint
         env:
           CI: true

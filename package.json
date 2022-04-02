@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "eslint": "turbo run eslint",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "test-cov": "turbo run test-cov"
   },
   "workspaces": [
     "packages/*"

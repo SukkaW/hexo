@@ -1,6 +1,7 @@
 {
   "name": "hexo-monorepo",
   "private": true,
+  "packageManager": "pnpm@6.32.4",
   "scripts": {
     "eslint": "turbo run eslint",
     "test": "turbo run test",

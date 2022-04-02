@@ -5,10 +5,7 @@
 We use [ESLint] to maintain the code style. You can install linter plugins on your editor or check the status with the following commands:
 
 ``` bash
-$ npm run eslint
-
-# You can append `--fix` option to these commands to fix the code style automatically
-$ npm run eslint -- --fix
+$ pnpm run eslint
 ```
 
 ## Pull Requests
@@ -17,9 +14,10 @@ $ npm run eslint -- --fix
 2. Clone the repository to your computer and install dependencies.
 
     ``` bash
+    $ npm install pnpm -g # Required if you don't have pnpm installed
     $ git clone https://github.com/<username>/hexo.git
     $ cd hexo
-    $ npm install
+    $ pnpm install
     ```
     
 3. Create a feature branch.
@@ -42,7 +40,7 @@ $ npm run eslint -- --fix
 Before you submitting the pull request. Please make sure your code is coveraged and passes the tests. Otherwise your pull request won't be merged.
 
 ``` bash
-$ npm test
+$ pnpm run test
 ```
 
 ## Updating Documentation

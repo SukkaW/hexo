@@ -15,6 +15,6 @@ jobs:
             ```sh
             git clone -b ${{ github.head_ref }} https://github.com/${{ github.event.pull_request.head.repo.full_name }}.git
             cd hexo
-            npm install
-            npm test
+            pnpm install
+            pnpm run test
             ```

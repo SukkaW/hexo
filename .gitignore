@@ -8,3 +8,5 @@ package-lock.json
 .nyc_output/
 coverage/
 .tmp*
+
+packages/hexo-util/highlight_alias.json

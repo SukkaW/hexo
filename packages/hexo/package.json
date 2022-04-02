@@ -9,7 +9,9 @@
   "scripts": {
     "eslint": "eslint .",
     "test": "mocha test/index.js",
-    "test-cov": "nyc --reporter=lcovonly pnpm run test -- --no-parallel"
+    "test-cov": "nyc --reporter=lcovonly pnpm run test -- --no-parallel",
+    "benchmark": "node test/benchmark.js --benchmark",
+    "profiling": "node test/benchmark.js --profiling"
   },
   "directories": {
     "lib": "./lib",

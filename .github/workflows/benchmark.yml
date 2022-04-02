@@ -20,14 +20,15 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2.2.1
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        run: npm install --silent
+        run: pnpm install
       - name: Running benchmark
-        run: node test/benchmark.js --benchmark
+        run: pnpm run benchmark --filter hexo
   profiling:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -37,19 +38,20 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2.2.1
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        run: npm install --silent
+        run: pnpm install
       - name: Running profiling
-        run: node test/benchmark.js --profiling
+        run: pnpm run profiling --filter hexo
       - name: Publish flamegraph to https://${{ github.sha }}-${{ matrix.node-version }}-hexo.surge.sh/flamegraph.html
         uses: dswistowski/surge-sh-action@v1
         with:
           domain: ${{ github.sha }}-${{ matrix.node-version }}-hexo.surge.sh
-          project: ./.tmp-hexo-theme-unit-test/0x/
+          project: ./packages/hexo/.tmp-hexo-theme-unit-test/0x/
           login: ${{ secrets.SURGE_LOGIN }}
           token: ${{ secrets.SURGE_TOKEN }}
       - name: Comment PR
